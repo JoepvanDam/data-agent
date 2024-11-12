@@ -3,3 +3,6 @@ C:\Users\joep\Documents\PyEmbed\python.exe {PATH_TO_SCRIPT}
 
 Run pip:
 C:\Users\joep\Documents\PyEmbed\python.exe C:\Users\joep\Documents\PyEmbed\Scripts\pip.exe {COMMAND} [OPTIONS]
+
+Login to huggingface (before using llama):
+C:\Users\joep\Documents\PyEmbed\python.exe C:\Users\joep\Documents\PyEmbed\Scripts\huggingface-cli.exe login
