@@ -161,7 +161,7 @@ def main():
     init_prompt = f"""
     Instructions:
     1. Below you will receive a list of available functions, information about the data, and the user question. Determine which function(s) to call based on the user's question. These functions will be applied in the specified order.
-    2. Specify the parameters required for each function in a structured dictionary.
+    2. ALWAYS ensure that all functions past the first use a previous function as a parameter!!!
     3. ONLY RETURN THE FOLLOWING FORMAT, NOTHING ELSE:
     {{
         "Next": "START",
@@ -182,8 +182,6 @@ def main():
         ...
     }}
     4. DO NOT add comments or other code to this template.
-    5. VERY IMPORTANT: When using multiple functions, ALWAYS use the result of a previous function as one of the parameters.
-    6. You are allowed to use as many functions as you deem necessary.
     
     ---
     Available functions:
@@ -228,10 +226,10 @@ def main():
         "Formatted": "formatted_answer"
     }}
     
-    2. RETRY - if you need to start over with the given functions.
+    2. START - if you need to start over with the given functions.
     Return it in this format:
     {{
-        "Next": "RETRY",
+        "Next": "START",
         "RESULT1": {{
             "function": "function_name",
             "parameters": {{
@@ -245,24 +243,7 @@ def main():
     """
 
     follow_up_prompt = f"""
-    The user has asked a follow-up question, which will be shown below. Please make sure to return the following format:
-    {{
-        "Next": "START",
-        "RESULT1": {{
-            "function": "function_name",
-            "parameters": {{
-                "param1": "value1",
-                "param2": "value2"
-            }}
-        }},
-        "RESULT2": {{
-            "function": "function_name",
-            "parameters": {{
-                "param1": "value1",
-                "param2": "value2"
-            }}
-        }}
-    }}
+    The user has asked a follow-up question, which will be shown below. Please make sure to stick to the original instructions.
     
     ---
     """
@@ -324,7 +305,7 @@ def main():
             if validity != "Valid":
                 prompt_type = 'retry'
                 result = validity
-            elif results['Next'] in ('START', 'RETRY'): # Start from nothing
+            elif results['Next'] == "START": # Start from nothing
                 # Remove next type
                 results.pop('Next', None)
                 
@@ -383,8 +364,8 @@ def main():
                 print(results['Formatted'])
                 result = input("\nWould you like to ask another question?\n")
             else: # ERROR (currently for testing, should be implemented as an actual error in the future)
-                print("ERROR! Model returned an unknown 'Next' element: ", results['next'])
-                return
+                prompt_type = 'retry'
+                result = f"Unknown 'Next' element: {results['next']}. Valid options include: FORMAT or START"
         except Exception as e:
             print(e)
             prompt_type = 'retry'
