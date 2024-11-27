@@ -134,7 +134,7 @@ def run_functions(assistant_response, data, function_map):
         return True, prompt_type, result
     
 # Prompt function
-def prompt_model(client, conversation_history, data, function_map):
+def prompt_model(client, conversation_history, data, function_map, model):
     """
     Prompt the OpenAI model with the conversation history and process the response.
 
@@ -153,7 +153,7 @@ def prompt_model(client, conversation_history, data, function_map):
     # Create a chat completion
     chat_completion = client.chat.completions.create(
         messages=conversation_history,
-        model="gpt-4o-mini",
+        model=model,
     )
 
     # Extract and print only the assistant's response

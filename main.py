@@ -16,7 +16,7 @@ import os
 
 load_dotenv()
 
-def main():
+def main(model):
     # Read data
     file_name = 'dummy_data.csv'
     data = pd.read_csv(file_name)
@@ -144,7 +144,7 @@ def main():
             print("Quitting...")
             return
 
-        answered, prompt_type, result = prompt_model(client, conversation_history, data, function_map)
+        answered, prompt_type, result = prompt_model(client, conversation_history, data, function_map, model)
 
 if __name__ == '__main__':
-    main()
+    main("gpt-4o-mini")
