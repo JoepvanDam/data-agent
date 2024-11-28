@@ -103,7 +103,7 @@ def main(model:str="gpt-4o-mini", test:bool=False) -> None:
     init_prompt = f"""
     Data file name: {file_name}
     Number of rows: {data.shape[0]}
-    Column info: {column_info}
+    Column info:\n{column_info}
     ---
     User Question:
     {user_question}
