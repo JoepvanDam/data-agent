@@ -47,9 +47,10 @@ def main(model, test=False):
         },
         ...
     }
-    4. If no valid function applies, return:
+    4. If no valid function applies, return the following and explain what function you are missing:
     {
-        'Next': 'ERROR'
+        'Next': 'ERROR',
+        'Reason': 'missing_function_explanation'
     }
     5. If you can answer the question with the current information, return:
     {
@@ -76,11 +77,17 @@ def main(model, test=False):
     * plot_correlation_heatmap: Plots a heatmap for the correlation matrix of numerical columns - Parameters: data (pd.DataFrame) - Returns: None
     * generate_summary_table: Generates a summary table for the dataset - Parameters: data (pd.DataFrame) - Returns: dict
     * grouped_summary: Groups data by a categorical column and applies an aggregation function to another column - Parameters: data (pd.DataFrame), group_by_column (str), agg_column (str), agg_func (str) - Returns: dict
+    * grouped: Groups data by a categorical column - Parameters: data (pd.DataFrame), group_by_column (str) - Returns: pd.DataFrame
+    * merge_data: Merges two datasets based on a common column - Parameters: data1 (pd.DataFrame), data2 (pd.DataFrame), column (str) - Returns: pd
     * plot_pie_chart: Generates a pie chart for a given column - Parameters: data (pd.DataFrame), column (str) - Returns: None
     * plot_line_chart: Generates a line chart for two columns - Parameters: data (pd.DataFrame), x_column (str), y_column (str) - Returns: None
     * missing_value_summary: Summarizes the count and percentage of missing values in each column - Parameters: data (pd.DataFrame) - Returns: dict
-    * custom_table: Filters data and returns a specific set of columns - Parameters: data (pd.DataFrame), columns (list[str]), filters (dict) - Returns: list[dict]
     * dict_to_df: Changes dictionary into a pandas dataframe - Parameters: dict (dict), column_names (list) - Returns: pd.DataFrame
+    * drop_columns: Drops specified columns from the dataset - Parameters: data (pd.DataFrame), columns (list[str]) - Returns: pd.DataFrame
+    * get_rows: Returns a subset of rows from the dataset - Parameters: data (pd.DataFrame), start (int), end (int) - Returns: pd.DataFrame
+    * sort_values: Sorts the dataset by a specified column - Parameters: data (pd.DataFrame), column (str), ascending (bool) - Returns: pd.DataFrame
+
+    Extra info: Data parameter can be the file name!
     """
 
     init_prompt = f"""

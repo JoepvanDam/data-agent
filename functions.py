@@ -21,6 +21,9 @@ def column_average(data, column):
 def column_sum(data, column):
     return data[column].sum()
 
+def column_correlation(data, column1, column2):
+    return data[column1].corr(data[column2])
+
 def filter_data(data, column, value, condition):
     if condition == ">" or condition == "greater":
         return data[data[column] > value]
@@ -98,6 +101,12 @@ def generate_summary_table(data):
 def grouped_summary(data, group_by_column, agg_column, agg_func):
     return data.groupby(group_by_column)[agg_column].agg(agg_func).to_dict()
 
+def grouped(data, group_by_column, agg_column):
+    return data.groupby(group_by_column)[agg_column]
+
+def merge_data(data1, data2, on, how):
+    return data1.merge(data2, on=on, how=how)
+
 def plot_pie_chart(data, column):
     value_counts = data[column].value_counts()
     value_counts.plot(kind='pie', autopct='%1.1f%%')
@@ -123,19 +132,23 @@ def missing_value_summary(data):
         for column, count in missing_values.items()
     }
 
-def custom_table(data, columns, filters=None):
-    if filters:
-        for column, value in filters.items():
-            data = data[data[column] == value]
-    return data[columns].to_dict(orient="records")
-
 def dict_to_df(dict, column_names):
     df = pd.DataFrame(list(dict.items()), columns=column_names)
     return df
 
+def drop_columns(data, columns):
+    return data.drop(columns=columns)
+
+def get_rows(data, start, end):
+    return data.iloc[start:end]
+
+def sort_values(data, column, ascending):
+    return data.sort_values(by=column, ascending=ascending)
+
 function_map = {
     "column_average": column_average,
     "column_sum": column_sum,
+    "column_correlation": column_correlation,
     "filter_data": filter_data,
     "divide": divide,
     "multiply": multiply,
@@ -151,9 +164,13 @@ function_map = {
     "plot_correlation_heatmap": plot_correlation_heatmap,
     "generate_summary_table": generate_summary_table,
     "grouped_summary": grouped_summary,
+    "grouped": grouped,
+    "merge_data": merge_data,
     "plot_pie_chart": plot_pie_chart,
     "plot_line_chart": plot_line_chart,
     "missing_value_summary": missing_value_summary,
-    "custom_table": custom_table,
-    "dict_to_df": dict_to_df
+    "dict_to_df": dict_to_df,
+    "drop_columns": drop_columns,
+    "get_rows": get_rows,
+    "sort_values": sort_values
 }
