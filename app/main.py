@@ -15,7 +15,17 @@ import os
 
 load_dotenv()
 
-def main(model, test=False):
+def main(model:str="gpt-4o-mini", test:bool=False) -> None:
+    """
+    Main function to prompt the OpenAI model with a conversation history and process the response.
+
+    Parameters:
+        model (str): The OpenAI model to use for prompting.
+        test (bool): A boolean indicating whether to run the model in test mode (default is False).
+
+    Returns:
+        None
+    """
     # Read data
     file_name = 'dummy_data.csv'
     data = pd.read_csv(file_name)
@@ -163,4 +173,4 @@ def main(model, test=False):
         print("Number of attempts:", attempts)
 
 if __name__ == '__main__':
-    main("gpt-4o-mini", test=True)
+    main(model="gpt-4o-mini", test=True)

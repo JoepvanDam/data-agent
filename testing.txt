@@ -130,4 +130,4 @@ A little too complex, but can be steered:
 * Add: Maybe you can group by prov, then calculate the averages?
 
 Too complex at the moment:
-10. What is the ratio of the total 'AP' to the total 'SP' for each 'Vznemer', sorted by the ratio in descending order?
+11. What is the ratio of the total 'AP' to the total 'SP' for each 'Vznemer', sorted by the ratio in descending order?
