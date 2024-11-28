@@ -1,38 +1,4 @@
-###########################################
-### Main script for prompting the model ###
-###########################################
-
-
-# TODO: Improve prompts and prompt handling to minimize token usage
-# TODO: Ensure as little as possible is handled in this script
-
-
-from helpers import prompt_model
-from dotenv import load_dotenv
-from openai import OpenAI
-import pandas as pd
-import os
-
-load_dotenv()
-
-def main(model, test=False):
-    # Read data
-    file_name = 'dummy_data.csv'
-    data = pd.read_csv(file_name)
-
-    # Get data info
-    column_info = ""
-    for col in data.columns:
-        column_info += f"Column name: {col} | "
-        column_info += f"Number of unique values: {data[col].nunique()} | "
-        column_info += f"Data type: {data[col].dtype}\n"
-
-    # Get user question
-    user_question = input('What is your question? ')
-
-    # Prompts
-    system_prompt = """
-    ALWAYS follow these instructions:
+ALWAYS follow these instructions:
     1. You will receive a list of available functions, information about the data, and a question posed by the user. Determine which function(s) to call to answer this question, using the available information. These functions will be applied in the specified order.
     2. Ensure that each function, except the last, is used in AT LEAST ONE subsequent function. REMEMBER THIS!
     3. ONLY RETURN THE FOLLOWING FORMAT, NOTHING ELSE:
@@ -61,7 +27,6 @@ def main(model, test=False):
     Available functions:
     * column_average: Calculates the average of a given column - Parameters: data (pd.DataFrame), column (str) - Returns: float
     * column_sum: Calculates the sum of a given column - Parameters: data (pd.DataFrame), column (str) - Returns: float
-    * filter_data: Filters data based on a condition - Parameters: data (pd.DataFrame), column (str), value (float), condition (str) - Returns: pd.DataFrame
     * divide: Divides num1 by num2 - Parameters: num1 (float), num2 (float) - Returns: float
     * multiply: Multiplies num1 by num2 - Parameters: num1 (float), num2 (float) - Returns: float
     * add: Adds all numbers in the array together in order - Parameters: num_array (list[float]) - Returns: float
@@ -81,79 +46,74 @@ def main(model, test=False):
     * missing_value_summary: Summarizes the count and percentage of missing values in each column - Parameters: data (pd.DataFrame) - Returns: dict
     * custom_table: Filters data and returns a specific set of columns - Parameters: data (pd.DataFrame), columns (list[str]), filters (dict) - Returns: list[dict]
     * dict_to_df: Changes dictionary into a pandas dataframe - Parameters: dict (dict), column_names (list) - Returns: pd.DataFrame
-    """
 
-    init_prompt = f"""
-    Data file name: {file_name}
-    Number of rows: {data.shape[0]}
-    Column info: {column_info}
+
+Data file name: dummy_data.csv
+    Number of rows: 110
+    Column info: Column name: Type | Number of unique values: 3 | Data type: object
+Column name: Polisnr | Number of unique values: 95 | Data type: object
+Column name: Submitted | Number of unique values: 95 | Data type: object
+Column name: Opendatum | Number of unique values: 93 | Data type: object
+Column name: Naamtps | Number of unique values: 9 | Data type: object
+Column name: Nummer | Number of unique values: 95 | Data type: int64
+Column name: Naaminsp | Number of unique values: 3 | Data type: object
+Column name: Lnk | Number of unique values: 95 | Data type: int64
+Column name: Level | Number of unique values: 95 | Data type: float64
+Column name: DuurV | Number of unique values: 90 | Data type: float64
+Column name: Vznemer | Number of unique values: 4 | Data type: object
+Column name: Tariefnaam | Number of unique values: 16 | Data type: object
+Column name: Vzsom | Number of unique values: 100 | Data type: float64
+Column name: AP | Number of unique values: 37 | Data type: int64
+Column name: SP | Number of unique values: 65 | Data type: int64
+Column name: APE | Number of unique values: 95 | Data type: float64
+Column name: Prdlink | Number of unique values: 95 | Data type: int64
+Column name: Ingangsd | Number of unique values: 95 | Data type: object
+Column name: Prov | Number of unique values: 3 | Data type: object
+Column name: Budget | Number of unique values: 14 | Data type: float64
+Column name: StCnv | Number of unique values: 10 | Data type: float64
+
     ---
     User Question:
-    {user_question}
-    """
-    
-    result_prompt = """
-    Below is the final result of your answer. Please return one of the following:
-    1. FORMAT - if the answer is fine to return to the user. Please make sure to format the answer to make it readable.
-    Return it in the following format:
-    {
-        "Next": "FORMAT",
-        "Formatted": "formatted_answer"
-    }
-    2. START - if the result does not answer the question and you need to start over with the given functions.
-    Return the format you received in the initial prompt.
-    ---
-    """
+    What is the average value of the AP column?
 
-    follow_up_prompt = """
-    The user has asked a follow-up question. Please make sure to stick to the original instructions.
-    ---
-    """
 
-    retry_prompt = """
-    An error occurred when implementing the given funtions. Please rethink your answer and try SOMETHING DIFFERENT.
-    ---
-    """
 
-    # Initialize the OpenAI client
-    client = OpenAI(api_key=os.getenv("API_KEY"))
-    conversation_history = [
-        {"role": "system", "content": system_prompt}
-    ]
-    
-    # Initial user prompt
-    user_prompt = {"role": "user", "content": init_prompt}
-    conversation_history.append(user_prompt)
-    
-    attempts = 0
-    prompt_type = 'init'
-    answered = False
-    result = None
-    while not answered:
-        if prompt_type == "init":
-            user_prompt = {"role": "user", "content": init_prompt}
-        elif prompt_type == "result":
-            user_prompt = {"role": "user", "content": result_prompt + f"Result: {result}"}
-        elif prompt_type == "follow_up":
-            user_prompt = {"role": "user", "content": follow_up_prompt + f"Follow-up question: {result}"}
-        elif prompt_type == 'retry':
-            user_prompt = {"role": "user", "content": retry_prompt + f"Error: {result}"}
-        elif prompt_type == 'stop':
-            print("Quitting...")
-            return
-        prompt_type = 'result'
-        conversation_history.append(user_prompt)
-        
-        # Dev check
-        print(user_prompt["content"])
-        if input(f"\nEnter Y to continue\n") != "Y":
-            print("Quitting...")
-            return
-        
-        answered, prompt_type, result = prompt_model(client, conversation_history, model, data, test)
-        attempts += 1
-    if test:
-        print("Number of attempts:", attempts)
 
-if __name__ == '__main__':
-    main("gpt-4o-mini", test=True)
+result_prompt = 
+Below is the final result of your answer. Please return one of the following:
+1. FORMAT - if the answer is fine to return to the user. Please make sure to format the answer to make it readable.
+Return it in the following format:
+{
+    "Next": "FORMAT",
+    "Formatted": "formatted_answer"
+}
+2. START - if the result does not answer the question and you need to start over with the given functions.
+Return the format you received in the initial prompt.
+---
+Result: {result}
+
+
+follow_up_prompt = 
+The user has asked a follow-up question. Please make sure to stick to the original instructions.
+---
+Follow-up question:
+
+
+retry_prompt = 
+An error occurred when implementing the given funtions. Please rethink your answer and try SOMETHING DIFFERENT.
+---
+Error: 
+
+
+CHECK 1. What is the average value of the AP column? 
+CHECK 2. How many unique values are in the 'Type' column?
+CHECK 3. What is the total AP for each unique value in the 'Vznemer' column?
+CHECK 4. What is the total AP for entries where 'Budget' is greater than 10?
+CHECK 5. What are some of the descriptive statistics (mean, median) for the 'Budget' column?
+
+FAILED 6. Is there a correlation between 'AP' and 'SP'? -> MAKE A FUNCTION FOR DROPPING COLUMNS!
+
+7. Can you show me a scatter plot of 'Budget' versus 'AP'?
+8. What is the average AP for each 'Naaminsp'?
+9. What is the average 'SP' per unique 'Budget', only for rows where 'AP' is greater than 100?
+10. What is the ratio of the total 'AP' to the total 'SP' for each 'Vznemer', sorted by the ratio in descending order?

@@ -21,6 +21,20 @@ def column_average(data, column):
 def column_sum(data, column):
     return data[column].sum()
 
+def filter_data(data, column, value, condition):
+    if condition == ">" or condition == "greater":
+        return data[data[column] > value]
+    elif condition == "<" or condition == "less":
+        return data[data[column] < value]
+    elif condition == ">=" or condition == "greater_equal":
+        return data[data[column] >= value]
+    elif condition == "<=" or condition == "less_equal":
+        return data[data[column] <= value]
+    elif condition == "==" or condition == "equal":
+        return data[data[column] == value]
+    elif condition == "!=" or condition == "not_equal":
+        return data[data[column] != value]
+
 def divide(num1, num2):
     return num1 / num2
 
@@ -115,12 +129,14 @@ def custom_table(data, columns, filters=None):
             data = data[data[column] == value]
     return data[columns].to_dict(orient="records")
 
-def dict_to_df(dict):
-    return pd.DataFrame([dict])
+def dict_to_df(dict, column_names):
+    df = pd.DataFrame(list(dict.items()), columns=column_names)
+    return df
 
 function_map = {
     "column_average": column_average,
     "column_sum": column_sum,
+    "filter_data": filter_data,
     "divide": divide,
     "multiply": multiply,
     "add": add,
