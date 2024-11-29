@@ -8,7 +8,7 @@ Calculations done in cost_testing.py:
 Adding all previous things to the prompt (so making use of caching): 0.671075$
 Removing system prompt when formatting (so no caching): 0.6673250000000001$
 
-This saves very little money, but sometimes there's errors that need to be handled, so it would go like this:
+This saves (a little) money, but sometimes there's errors that need to be handled, so it would go like this:
 1 error with caching: 0.7834875$
 1 error without caching: 0.79215$
 2 errors with caching: 3.91$
@@ -23,8 +23,7 @@ Cost without caching: 705036.3800500263
 Difference: 0.01 (MORE expensive with caching)
 ```
 
-Conclusion: if there are more than 30.21% errors, it's better to use caching. If there are less, it's better to not use caching. This will depend on the used model, as some models are more error-prone than others. Best thing would be is if you could specify when to use caching, but I'm not sure if the API supports that. -> NEEDS RESEARCH!!!!!!
-# NEEDS RESEARCH!!!!!!!!!!
+Conclusion: if there are more than 30.21% errors, it's better to use caching. If there are less, it's better to not use caching. This will depend on the used model, as some models are more error-prone than others. Best thing would be is if you could specify when to use caching, but the API doesn't support that.
 
 * The function: column_correlation was not correctly added to the prompt, which makes question 6 more difficult, BUT not impossible. o1-mini showed that it can be done by dropping all other columns and using correlation matrix.
 
