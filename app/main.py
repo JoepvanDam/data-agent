@@ -134,9 +134,16 @@ def main(model:str="gpt-4o-mini", test:bool=False) -> None:
 
     # Initialize the OpenAI client
     client = OpenAI(api_key=os.getenv("API_KEY"))
-    conversation_history = [
-        {"role": "system", "content": system_prompt}
-    ]
+
+    # o1-preview does not support system role
+    if model != "o1-preview":
+        conversation_history = [
+            {"role": "system", "content": system_prompt}
+        ]
+    else:
+        conversation_history = [
+            {"role": "user", "content": init_prompt}
+        ]
     
     # Initial user prompt
     user_prompt = {"role": "user", "content": init_prompt}
@@ -171,4 +178,4 @@ def main(model:str="gpt-4o-mini", test:bool=False) -> None:
         answered, prompt_type, result = prompt_model(client, conversation_history, model, data, test)
 
 if __name__ == '__main__':
-    main(model="gpt-4o-mini", test=True)
+    main(model="o1-preview", test=True)
