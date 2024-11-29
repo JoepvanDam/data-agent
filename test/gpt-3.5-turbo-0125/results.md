@@ -1,4 +1,4 @@
-# Model: gpt-4o
+# Model: gpt-3.5-turbo-0125
 ## Question 1
 ### Attempt = 1
 #### What is the average value of the AP column?
