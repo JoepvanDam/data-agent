@@ -113,7 +113,7 @@ def main(model:str="gpt-4o-mini", test:bool=False) -> None:
     result_prompt = f"""
     This was the user's question: {user_question}
     ---
-    Below is the final result of your answer. Please format the answer to make it readable, return the following format:
+    Below is the final result of your answer. Please put the answer in a phrase that's readable for the user, return the following format:
     {{
         "Next": "FORMAT",
         "Formatted": "formatted_answer"

@@ -1,5 +1,10 @@
 # Findings
-* During the test, I found that it is probably smart to use less tokens for the formatting question. The whole system input and initial question are not necessary to format the answer.
+* During the test, I found that it is probably smart to use less tokens for the formatting question. The whole system input and initial question are not necessary to format the answer. This does seem to slow down the process, I assume because none of the input can be cached. It saves about 2k input tokens for formatting, BUT caching is removed. 
+About 1k can be cached normally, which is half price.
+Say cost is 1$ for 1k normal tokens, then 1k cached tokens is 0.5$
+Normally it goes: Question AND Format is ~2k input of which ~1k is cached = 1.50$ * 2 = 3.00$
+Now it goes: Question is ~2k input = 2.00$, Format is 200 input = 0.20$ = 2.20$
+So we do actually save 0.80$...
 
 # Questions
 1. What is the average value of the AP column?
