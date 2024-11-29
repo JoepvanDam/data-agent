@@ -1,0 +1,128 @@
+{
+    "Question1": {
+        "Attempt1": {
+            "ResponseTimeSeconds": 1.665499210357666,
+            "InTokensUsed": 2065,
+            "OutTokensUsed": 50
+        },
+        "Formatting1": {
+            "ResponseTimeSeconds": 0.8394598960876465,
+            "InTokensUsed": 2239,
+            "OutTokensUsed": 28
+        },
+        "Attempts": 1,
+        "Success": true
+    },
+    "Question2": {
+        "Attempt1": {
+            "ResponseTimeSeconds": 1.217207908630371,
+            "InTokensUsed": 2069,
+            "OutTokensUsed": 27
+        },
+        "Attempts": 1,
+        "Success": true
+    },
+    "Question3": {
+        "Attempt1": {
+            "ResponseTimeSeconds": 2.092919111251831,
+            "InTokensUsed": 2081,
+            "OutTokensUsed": 71
+        },
+        "Formatting1": {
+            "ResponseTimeSeconds": 1.3381388187408447,
+            "InTokensUsed": 2300,
+            "OutTokensUsed": 67
+        },
+        "Attempts": 1,
+        "Success": true
+    },
+    "Question4": {
+        "Attempt1": {
+            "ResponseTimeSeconds": 1.7535884380340576,
+            "InTokensUsed": 2079,
+            "OutTokensUsed": 102
+        },
+        "Formatting1": {
+            "ResponseTimeSeconds": 0.8745107650756836,
+            "InTokensUsed": 2299,
+            "OutTokensUsed": 34
+        },
+        "Attempts": 1,
+        "Success": true
+    },
+    "Question5": {
+        "Attempt1": {
+            "ResponseTimeSeconds": 0.9479861259460449,
+            "InTokensUsed": 2083,
+            "OutTokensUsed": 50
+        },
+        "Formatting1": {
+            "ResponseTimeSeconds": 1.0197768211364746,
+            "InTokensUsed": 2323,
+            "OutTokensUsed": 47
+        },
+        "Attempts": 1,
+        "Success": true
+    },
+    "Question6": {
+        "Attempt1": {
+            "ResponseTimeSeconds": 1.333261489868164,
+            "InTokensUsed": 2071,
+            "OutTokensUsed": 44
+        },
+        "Error1": {
+            "ResponseTimeSeconds": 0.6489856243133545,
+            "InTokensUsed": 2156,
+            "OutTokensUsed": 22
+        },
+        "Attempt2": {
+            "ResponseTimeSeconds": 0.9759914875030518,
+            "InTokensUsed": 2071,
+            "OutTokensUsed": 44
+        },
+        "Error2": {
+            "ResponseTimeSeconds": 2.562969446182251,
+            "InTokensUsed": 2156,
+            "OutTokensUsed": 51
+        },
+        "Attempts": 2,
+        "Success": false
+    },
+    "Question7": {
+        "Attempt1": {
+            "ResponseTimeSeconds": 1.2660002708435059,
+            "InTokensUsed": 2077,
+            "OutTokensUsed": 61
+        },
+        "Attempts": 1,
+        "Success": true
+    },
+    "Question8": {
+        "Attempt1": {
+            "ResponseTimeSeconds": 1.8252367973327637,
+            "InTokensUsed": 2071,
+            "OutTokensUsed": 71
+        },
+        "Formatting1": {
+            "ResponseTimeSeconds": 1.061328649520874,
+            "InTokensUsed": 2301,
+            "OutTokensUsed": 60
+        },
+        "Attempts": 1,
+        "Success": true
+    },
+    "Question9": {
+        "Attempt1": {
+            "ResponseTimeSeconds": 2.4037482738494873,
+            "InTokensUsed": 2097,
+            "OutTokensUsed": 121
+        },
+        "Formatting1": {
+            "ResponseTimeSeconds": 4.000837087631226,
+            "InTokensUsed": 2503,
+            "OutTokensUsed": 248
+        },
+        "Attempts": 1,
+        "Success": true
+    }
+}
