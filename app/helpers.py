@@ -128,7 +128,7 @@ def run_functions(assistant_response, data):
         return 'stop', 'stop', None
     else: # Currently for testing, should be implemented as an actual error in the future (retry)
         prompt_type = 'retry'
-        result = f"Unknown 'Next' element: {results['next']}. Valid options include: ERROR, FORMAT or START"
+        result = f"Unknown 'Next' element: {results['Next']}. Valid options include: ERROR, FORMAT or START"
         return 'error', prompt_type, result
 
 # Count tokens helper function

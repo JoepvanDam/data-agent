@@ -221,7 +221,7 @@ Out tokens used: 47
 ```json
 {"Next": "START", "RESULT1": {"function": "plot_scatter_plot", "parameters": {"data": "app/dummy_data.csv", "column_x": "Budget", "column_y": "AP"}}}
 ```
-See results/gpt-4o-Q7-A1.png for plot
+See results/gpt-4o/Q7-A1.png for plot.
 
 ---
 

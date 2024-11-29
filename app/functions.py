@@ -25,17 +25,17 @@ def column_correlation(data, column1, column2):
     return data[column1].corr(data[column2])
 
 def filter_data(data, column, value, condition):
-    if condition == ">" or condition == "greater":
+    if condition == ">" or condition == "greater" or condition == "greater_than":
         return data[data[column] > value]
-    elif condition == "<" or condition == "less":
+    elif condition == "<" or condition == "less" or condition == "less_than":
         return data[data[column] < value]
-    elif condition == ">=" or condition == "greater_equal":
+    elif condition == ">=" or condition == "greater_equal" or condition == "greater_than_equal":
         return data[data[column] >= value]
-    elif condition == "<=" or condition == "less_equal":
+    elif condition == "<=" or condition == "less_equal" or condition == "less_than_equal":
         return data[data[column] <= value]
-    elif condition == "==" or condition == "equal":
+    elif condition == "==" or condition == "equal" or condition == "equals":
         return data[data[column] == value]
-    elif condition == "!=" or condition == "not_equal":
+    elif condition == "!=" or condition == "not_equal" or condition == "not_equals":
         return data[data[column] != value]
 
 def divide(num1, num2):
