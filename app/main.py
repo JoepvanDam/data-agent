@@ -110,16 +110,15 @@ def main(model:str="gpt-4o-mini", test:bool=False) -> None:
     {user_question}
     """
     
-    result_prompt = """
-    Below is the final result of your answer. Please return one of the following:
-    1. FORMAT - if the answer is fine to return to the user. Please make sure to format the answer to make it readable.
-    Return it in the following format:
-    {
+    result_prompt = f"""
+    This was the user's question: {user_question}
+    ---
+    Below is the final result of your answer. Please format the answer to make it readable, return the following format:
+    {{
         "Next": "FORMAT",
         "Formatted": "formatted_answer"
-    }
-    2. START - if the result does not answer the question and you need to start over with the given functions.
-    Return the format you received in the initial prompt.
+    }}
+    DO NOT add comments, ```python code blocks```, or any other formatting or code to the response. ONLY return the JSON format above.
     ---
     """
 
@@ -151,6 +150,7 @@ def main(model:str="gpt-4o-mini", test:bool=False) -> None:
             user_prompt = {"role": "user", "content": init_prompt}
         elif prompt_type == "result":
             user_prompt = {"role": "user", "content": result_prompt + f"Result: {result}"}
+            conversation_history = []
         elif prompt_type == "follow_up":
             user_prompt = {"role": "user", "content": follow_up_prompt + f"Follow-up question: {result}"}
         elif prompt_type == 'retry':
