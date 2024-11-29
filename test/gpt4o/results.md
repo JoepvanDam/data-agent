@@ -78,6 +78,8 @@ Out tokens used: 67
 }
 ```
 
+---
+
 ## Question 4
 ### Attempt = 1
 #### What is the total AP for entries where 'Budget' is greater than 10?
@@ -117,6 +119,8 @@ Out tokens used: 34
 }
 ```
 
+---
+
 ## Question 5
 ### Attempt = 1
 #### What are some of the descriptive statistics (mean, median) for the 'Budget' column?
@@ -146,6 +150,8 @@ Out tokens used: 38
     "Formatted": "The mean of the 'Budget' column is approximately 9.56, and the median is 7.5."
 }
 ```
+
+---
 
 ## Question 6
 ### Attempt = 1
@@ -204,6 +210,8 @@ Out tokens used: 38
 }
 ```
 
+---
+
 ## Question 7
 ### Attempt = 1
 #### Can you show me a scatter plot of 'Budget' versus 'AP'?
@@ -214,6 +222,8 @@ Out tokens used: 47
 {"Next": "START", "RESULT1": {"function": "plot_scatter_plot", "parameters": {"data": "app/dummy_data.csv", "column_x": "Budget", "column_y": "AP"}}}
 ```
 See results/gpt-4o-Q7-A1.png for plot
+
+---
 
 ## Question 8
 ### Attempt = 1
@@ -246,6 +256,8 @@ Out tokens used: 69
     "Formatted": "The average AP for each 'Naaminsp' is as follows: Inspector Henk has an average AP of 1763.34, Inspector Piet has an average AP of 1721.86, and Inspector Willem has an average AP of 1737.11."
 }
 ```
+
+---
 
 ## Question 9
 ### Attempt = 1
