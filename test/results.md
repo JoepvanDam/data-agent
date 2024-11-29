@@ -1,3 +1,7 @@
+# Findings
+* During the test, I found that it is probably smart to use less tokens for the formatting question. The whole system input and initial question are not necessary to format the answer.
+
+# Questions
 1. What is the average value of the AP column?
 2. How many unique values are in the 'Type' column?
 3. What is the total AP for each unique value in the 'Vznemer' column?
