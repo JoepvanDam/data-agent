@@ -164,13 +164,13 @@ def prompt_model(client, conversation_history, model, data, test=False):
         )
         end_time = time.time()
         response_time = end_time - start_time
-        print(f"\nResponse time: {response_time} seconds")
+        print(f"\nResponse time: {response_time} seconds \\")
 
         # Count input tokens
         in_token_count = 0
         for message in conversation_history:
             in_token_count += num_tokens_from_string(message['content'], model)
-        print(f"In tokens used: {in_token_count}")
+        print(f"In tokens used: {in_token_count} \\")
     else:
         chat_completion = client.chat.completions.create(
             messages=conversation_history,
@@ -180,12 +180,14 @@ def prompt_model(client, conversation_history, model, data, test=False):
     # Extract assistant's response
     assistant_response = chat_completion.choices[0].message.content
     conversation_history.append({"role": "assistant", "content": assistant_response})
-    print("\nResponse:\n", assistant_response)
+    
 
     # Count output tokens
     if test:
         out_token_count = num_tokens_from_string(assistant_response, model)
-        print(f"\nOut tokens used: {out_token_count}")
+        print(f"Out tokens used: {out_token_count}")
+    
+    print("\nResponse:\n", assistant_response)
     
     try:
         status, prompt_type, result = run_functions(assistant_response, data) # Status can be: 'result', 'stop', 'error', 'follow_up'

@@ -1,0 +1,140 @@
+{
+    "Question1": {
+        "Attempt1": {
+            "ResponseTimeSeconds": 1.6408960819244385,
+            "InTokensUsed": 2038,
+            "OutTokensUsed": 50
+        },
+        "Formatting1": {
+            "ResponseTimeSeconds": 1.3875157833099365,
+            "InTokensUsed": 112,
+            "OutTokensUsed": 29
+        },
+        "Attempts": 1,
+        "Success": true,
+        "Answer": "The average value of the AP column is approximately 1738.06."
+    },
+    "Question2": {
+        "Attempt1": {
+            "ResponseTimeSeconds": 1.9603331089019775,
+            "InTokensUsed": 2042,
+            "OutTokensUsed": 27
+        },
+        "Attempts": 1,
+        "Success": true,
+        "Answer": "There are 3 unique values in the 'Type' column."
+    },
+    "Question3": {
+        "Attempt1": {
+            "ResponseTimeSeconds": 2.5637688636779785,
+            "InTokensUsed": 2054,
+            "OutTokensUsed": 71
+        },
+        "Formatting1": {
+            "ResponseTimeSeconds": 2.2037956714630127,
+            "InTokensUsed": 145,
+            "OutTokensUsed": 68
+        },
+        "Attempts": 1,
+        "Success": true,
+        "Answer": "The total AP for each unique 'Vznemer' value is as follows: Bakker has 14,266 AP, De Jong has 43,160 AP, De Vries has 50,548 AP, and Jansen has 83,213 AP."
+    },
+    "Question4": {
+        "Attempt1": {
+            "ResponseTimeSeconds": 4.139699935913086,
+            "InTokensUsed": 2052,
+            "OutTokensUsed": 101
+        },
+        "Formatting1": {
+            "ResponseTimeSeconds": 1.1813998222351074,
+            "InTokensUsed": 113,
+            "OutTokensUsed": 34
+        },
+        "Attempts": 1,
+        "Success": true,
+        "Answer": "The total AP for entries where 'Budget' is greater than 10 is 65,853."
+    },
+    "Question5": {
+        "Attempt1": {
+            "ResponseTimeSeconds": 2.2335703372955322,
+            "InTokensUsed": 2056,
+            "OutTokensUsed": 50
+        },
+        "Formatting1": {
+            "ResponseTimeSeconds": 1.6576967239379883,
+            "InTokensUsed": 187,
+            "OutTokensUsed": 36
+        },
+        "Attempts": 1,
+        "Success": true,
+        "Answer": "The mean budget is approximately 9.56 units, and the median budget is 7.5 units."
+    },
+    "Question6": {
+        "Attempt1": {
+            "ResponseTimeSeconds": 2.0238208770751953,
+            "InTokensUsed": 2044,
+            "OutTokensUsed": 44
+        },
+        "Error1": {
+            "ResponseTimeSeconds": 1.4798316955566406,
+            "InTokensUsed": 2130,
+            "OutTokensUsed": 19,
+            "Error_text": "Error: could not convert string to float: 'SMT'",
+            "Stop": "Missing a function to clean non-numeric values before correlation calculation."
+        },
+        "Attempt2": {
+            "ResponseTimeSeconds": 1.5659997463226318,
+            "InTokensUsed": 2044,
+            "OutTokensUsed": 44
+        },
+        "Error2": {
+            "ResponseTimeSeconds": 0.9879457950592041,
+            "InTokensUsed": 2130,
+            "OutTokensUsed": 19,
+            "Error_text": "Error: could not convert string to float: 'SMT'",
+            "Stop": "Missing a function to clean non-numeric values before correlation calculation."
+        },
+        "Attempts": 2,
+        "Success": false
+    },
+    "Question7": {
+        "Attempt1": {
+            "ResponseTimeSeconds": 2.3525705337524414,
+            "InTokensUsed": 2050,
+            "OutTokensUsed": 61
+        },
+        "Attempts": 1,
+        "Success": true,
+        "Answer": "See results/gpt-4-turbo/Q7-A1.png for plot."
+    },
+    "Question8": {
+        "Attempt1": {
+            "ResponseTimeSeconds": 2.236603260040283,
+            "InTokensUsed": 2044,
+            "OutTokensUsed": 71
+        },
+        "Formatting1": {
+            "ResponseTimeSeconds": 2.1827900409698486,
+            "InTokensUsed": 150,
+            "OutTokensUsed": 70
+        },
+        "Attempts": 1,
+        "Success": true,
+        "Answer": "The average AP for each 'Naaminsp' is as follows: Inspector Henk has an average AP of 1763.34, Inspector Piet has an average AP of 1721.86, and Inspector Willem has an average AP of 1737.11."
+    },
+    "Question9": {
+        "Attempt1": {
+            "ResponseTimeSeconds": 3.438961982727051,
+            "InTokensUsed": 2072,
+            "OutTokensUsed": 122
+        },
+        "Formatting1": {
+            "ResponseTimeSeconds": 6.300967216491699,
+            "InTokensUsed": 290,
+            "OutTokensUsed": 258
+        },
+        "Attempts": 1,
+        "Success": true,
+        "Answer": "The average 'Vzsom' per unique 'Budget' for rows where 'AP' is greater than 100 are as follows: Budget 1.0 has an average of 1570924.0, Budget 2.0 has an average of 577336.0, Budget 3.0 has an average of 1263468.2, Budget 4.0 has an average of 124185.0, Budget 5.0 has an average of 785280.0, Budget 6.0 has an average of 1845847.0, Budget 7.0 has an average of 497498.0, Budget 8.0 has an average of 278903.7, Budget 9.0 has an average of 876666.6, Budget 10.0 has an average of 1435891.0, Budget 11.0 has an average of 1292780.3, Budget 18.0 has an average of 1398500.0, Budget 19.0 has an average of 1380105.5, Budget 25.0 has an average of 531302.7."
+    }
+}
