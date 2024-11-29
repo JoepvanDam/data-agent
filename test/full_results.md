@@ -6,6 +6,8 @@ Normally it goes: Question AND Format is ~2k input of which ~1k is cached = 1.50
 Now it goes: Question is ~2k input = 2.00$, Format is 200 input = 0.20$ = 2.20$
 So we do actually save 0.80$...
 
+* The function: column_correlation was not correctly added to the prompt, which makes question 6 more difficult, BUT not impossible. o1-mini showed that it can be done by dropping all other columns and using correlation matrix.
+
 # Questions
 1. What is the average value of the AP column?
 2. How many unique values are in the 'Type' column?
