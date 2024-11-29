@@ -10,10 +10,6 @@ def calculate_cost(caching, runs, error_rate, model="gpt-4o-mini"):
         CACHE_MULTIPLIER = 0.0075 if caching else 0.015
     elif model == "o1-mini":
         CACHE_MULTIPLIER = 0.0015 if caching else 0.003
-    elif model == "gpt-4-turbo":
-        CACHE_MULTIPLIER = 0.005 if caching else 0.01
-    elif model == "gpt-3.5-turbo-0125":
-        CACHE_MULTIPLIER = 0.00025 if caching else 0.0005
     else:
         raise ValueError(f"Unknown model: {model}")
 
@@ -120,9 +116,7 @@ if __name__ == "__main__":
         "gpt-4o",
         "gpt-4o-mini",
         "o1-preview",
-        "o1-mini",
-        "gpt-4-turbo",
-        "gpt-3.5-turbo-0125"
+        "o1-mini"
     ]
     error_rates = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6]
 

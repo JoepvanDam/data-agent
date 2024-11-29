@@ -23,7 +23,8 @@ Cost without caching: 705036.3800500263
 Difference: 0.01 (MORE expensive with caching)
 ```
 
-Conclusion: if there are more than 30.21% errors, it's better to use caching. If there are less, it's better to not use caching. This will depend on the used model, as some models are more error-prone than others.
+Conclusion: if there are more than 30.21% errors, it's better to use caching. If there are less, it's better to not use caching. This will depend on the used model, as some models are more error-prone than others. Best thing would be is if you could specify when to use caching, but I'm not sure if the API supports that. -> NEEDS RESEARCH!!!!!!
+# NEEDS RESEARCH!!!!!!!!!!
 
 * The function: column_correlation was not correctly added to the prompt, which makes question 6 more difficult, BUT not impossible. o1-mini showed that it can be done by dropping all other columns and using correlation matrix.
 
