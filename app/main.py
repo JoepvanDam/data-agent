@@ -142,7 +142,7 @@ def main(model:str="gpt-4o-mini", test:bool=False) -> None:
         ]
     else:
         conversation_history = [
-            {"role": "user", "content": init_prompt}
+            {"role": "user", "content": system_prompt}
         ]
     
     # Initial user prompt
