@@ -178,4 +178,4 @@ def main(model:str="gpt-4o-mini", test:bool=False) -> None:
         answered, prompt_type, result = prompt_model(client, conversation_history, model, data, test)
 
 if __name__ == '__main__':
-    main(model="gpt-4-turbo", test=True)
+    main(model="gpt-3.5-turbo-0125", test=True)
