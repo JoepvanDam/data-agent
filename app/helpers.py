@@ -16,8 +16,6 @@ import tiktoken
 import json
 import time
 
-PATH = "app/"
-
 # Dict checker helper function
 def validate_dict(dict):
     """
@@ -107,7 +105,7 @@ def run_functions(assistant_response, data):
             # Add data if needed
             if "data" in params and isinstance(params["data"], str):
                 if params["data"].endswith(".csv"):
-                    data = pd.read_csv(f"{PATH}{params['data']}")
+                    data = pd.read_csv(f"{params['data']}")
                     params["data"] = data
                 elif params["data"] == "data":
                     params["data"] = data

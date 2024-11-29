@@ -14,6 +14,7 @@ import pandas as pd
 import os
 
 load_dotenv()
+PATH = "app/"
 
 def main(model:str="gpt-4o-mini", test:bool=False) -> None:
     """
@@ -27,7 +28,7 @@ def main(model:str="gpt-4o-mini", test:bool=False) -> None:
         None
     """
     # Read data
-    file_name = 'dummy_data.csv'
+    file_name = f'{PATH}dummy_data.csv'
     data = pd.read_csv(file_name)
 
     # Get data info
@@ -67,7 +68,7 @@ def main(model:str="gpt-4o-mini", test:bool=False) -> None:
         'Next': 'FORMAT',
         'Formatted': 'formatted_answer'
     }
-    6. DO NOT add comments or other code to the template.
+    6. DO NOT add comments, ```python code blocks```, or any other formatting or code to the response. ONLY return the JSON format above.
     ---
     Available functions:
     * column_average: Calculates the average of a given column - Parameters: data (pd.DataFrame), column (str) - Returns: float
@@ -142,7 +143,6 @@ def main(model:str="gpt-4o-mini", test:bool=False) -> None:
     user_prompt = {"role": "user", "content": init_prompt}
     conversation_history.append(user_prompt)
     
-    attempts = 0
     prompt_type = 'init'
     answered = False
     result = None
@@ -163,14 +163,12 @@ def main(model:str="gpt-4o-mini", test:bool=False) -> None:
         
         # Dev check
         print(user_prompt["content"])
+        print("Using model:", model)
         if input(f"\nEnter Y to continue\n") != "Y":
             print("Quitting...")
             return
         
         answered, prompt_type, result = prompt_model(client, conversation_history, model, data, test)
-        attempts += 1
-    if test:
-        print("Number of attempts:", attempts)
 
 if __name__ == '__main__':
-    main(model="gpt-4o-mini", test=True)
+    main(model="gpt-4o", test=True)
