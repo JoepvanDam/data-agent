@@ -7,11 +7,14 @@
 # TODO: Ensure as little as possible is handled in this script
 
 
+import os
+import sys
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
 from helpers import prompt_model
 from dotenv import load_dotenv
 from openai import OpenAI
 import pandas as pd
-import os
 
 load_dotenv()
 PATH = "app/"
@@ -157,7 +160,6 @@ def main(model:str="gpt-4o-mini", test:bool=False) -> None:
             user_prompt = {"role": "user", "content": init_prompt}
         elif prompt_type == "result":
             user_prompt = {"role": "user", "content": result_prompt + f"Result: {result}"}
-            conversation_history = []
         elif prompt_type == "follow_up":
             user_prompt = {"role": "user", "content": follow_up_prompt + f"Follow-up question: {result}"}
         elif prompt_type == 'retry':
