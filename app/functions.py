@@ -3,6 +3,7 @@
 ########################################################
 
 
+# TODO: Add ability to read 'average' into grouped_summary function
 # TODO: Add more functions to the function_map
 # TODO: Make function map automatically generated (if possible)
 
@@ -99,6 +100,8 @@ def generate_summary_table(data):
     return summary.to_dict()
 
 def grouped_summary(data, group_by_column, agg_column, agg_func):
+    if agg_func == "average":
+        agg_func = "mean"
     return data.groupby(group_by_column)[agg_column].agg(agg_func).to_dict()
 
 def grouped(data, group_by_column, agg_column):

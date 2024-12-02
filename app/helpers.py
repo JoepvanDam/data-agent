@@ -124,7 +124,7 @@ def run_functions(assistant_response, data):
         return 'format', 'result', result
     elif results['Next'] == 'FORMAT': # Print the formatted result (follow-up) - currently not implemented
         prompt_type = 'follow_up'
-        print(results['Formatted'])
+        print(f"\nANTWOORD: {results['Formatted']}\n")
         return 'stop', 'stop', None
     else: # Currently for testing, should be implemented as an actual error in the future (retry)
         prompt_type = 'retry'
