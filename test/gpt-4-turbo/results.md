@@ -181,6 +181,7 @@ Out tokens used: 19
     "Reason": "missing_function_explanation"
 }
 ```
+Task error because (1) the error reason it gives is unclear, and it was given the instruction to give a clear reason, and (2) there is not a 'missing function', this *IS* possible by using drop_columns.
 
 ### Attempt = 2
 #### Is there a correlation between 'AP' and 'SP'?
@@ -209,6 +210,7 @@ Out tokens used: 19
     "Reason": "missing_function_explanation"
 }
 ```
+Task error, same as above.
 
 ---
 

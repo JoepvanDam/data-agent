@@ -140,7 +140,7 @@ Out tokens used: 50
 }
 ```
 
-#### Question formatting
+#### Question formatting (error)
 Response time: 5.4005115032196045 seconds \
 In tokens used: 185 \
 Out tokens used: 81
@@ -150,7 +150,7 @@ Out tokens used: 81
     "Formatted": "The 'Budget' column contains 104 entries with an average (mean) budget of 9.56 million, a median budget of 7.50 million, and a standard deviation of 7.20 million. The budget values range from a minimum of 1.00 million to a maximum of 25.00 million."
 }
 ```
-Technically wrong. The model assumes that the numbers are in millions.
+The 'try' is a successful format, but it's an accuracy error, because the model makes the assumption that the numbers are millions instead of floats. Thus, it did not accurately format the answer.
 
 ### Attempt = 2
 #### What are some of the descriptive statistics (mean, median) for the 'Budget' column?
@@ -195,6 +195,7 @@ Out tokens used: 30
     "Reason": "Missing a function to extract the correlation between two specific columns from the correlation matrix."
 }
 ```
+Accuracy error as this *IS* possible by combining the drop_columns and correlation_matrix functions.
 
 ### Attempt = 2
 #### Is there a correlation between 'AP' and 'SP'?
@@ -235,6 +236,7 @@ Out tokens used: 159
     }
 }
 ```
+Task error because the model seemingly 'forgot' about the non-numeric columns when running the correlation matrix, even though the prompt clearly says it's for numerical columns only.
 
 #### Question formatting
 Response time: 2.5506744384765625 seconds \
@@ -311,6 +313,7 @@ Out tokens used: 71
     }
 }
 ```
+Accuracy error, as the model should intrinsically know that the agg_func doesn't take average as a parameter.
 
 #### Question formatting
 Response time: 3.7385826110839844 seconds \
@@ -382,6 +385,7 @@ Out tokens used: 121
     }
 }
 ```
+Again accuracy error, as the model should intrinsically know that the agg_func doesn't take average as a parameter.
 
 #### Question formatting
 Response time: 8.977714538574219 seconds \

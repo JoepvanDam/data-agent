@@ -65,7 +65,7 @@
             "InTokensUsed": 185,
             "OutTokensUsed": 51
         },
-        "Error1": {
+        "Task_Error1": {
             "ResponseTimeSeconds": 1.2799570560455322,
             "InTokensUsed": 283,
             "OutTokensUsed": 50,
@@ -81,13 +81,13 @@
             "InTokensUsed": 2071,
             "OutTokensUsed": 126
         },
-        "Error1": {
+        "Task_Error1": {
             "ResponseTimeSeconds": 3.961048126220703,
             "InTokensUsed": 2239,
             "OutTokensUsed": 81,
             "Error_text": "Error: RESULT1 is not used in a subsequent function."
         },
-        "Error2": {
+        "Task_Error2": {
             "ResponseTimeSeconds": 0.9834918975830078,
             "InTokensUsed": 2362,
             "OutTokensUsed": 43,
@@ -99,13 +99,13 @@
             "InTokensUsed": 2071,
             "OutTokensUsed": 126
         },
-        "Error3": {
+        "Task_Error3": {
             "ResponseTimeSeconds": 1.5115535259246826,
             "InTokensUsed": 2239,
             "OutTokensUsed": 81,
             "Error_text": "Error: RESULT1 is not used in a subsequent function."
         },
-        "Error4": {
+        "Task_Error4": {
             "ResponseTimeSeconds": 0.836712121963501,
             "InTokensUsed": 2362,
             "OutTokensUsed": 34,
@@ -131,7 +131,7 @@
             "InTokensUsed": 2071,
             "OutTokensUsed": 71
         },
-        "Error1": {
+        "Accuracy_Error1": {
             "ResponseTimeSeconds": 1.5160040855407715,
             "InTokensUsed": 2184,
             "OutTokensUsed": 71,
@@ -152,19 +152,19 @@
             "InTokensUsed": 2097,
             "OutTokensUsed": 125
         },
-        "Error1": {
+        "Task_Error1": {
             "ResponseTimeSeconds": 3.467628002166748,
             "InTokensUsed": 2264,
             "OutTokensUsed": 125,
             "Error_text": "Error: RESULT1 is not used in a subsequent function."
         },
-        "Error2": {
+        "Task_Error2": {
             "ResponseTimeSeconds": 2.5941131114959717,
             "InTokensUsed": 2431,
             "OutTokensUsed": 122,
             "Error_text": "Error: RESULT1 is not used in a subsequent function."
         },
-        "Error3": {
+        "Accuracy_Error3": {
             "ResponseTimeSeconds": 1.3687443733215332,
             "InTokensUsed": 2595,
             "OutTokensUsed": 56,
@@ -175,7 +175,7 @@
             "InTokensUsed": 2097,
             "OutTokensUsed": 133
         },
-        "Error4": {
+        "Task_Error4": {
             "ResponseTimeSeconds": 1.2801613807678223,
             "InTokensUsed": 2280,
             "OutTokensUsed": 53,

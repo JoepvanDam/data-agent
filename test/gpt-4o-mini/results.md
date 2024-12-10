@@ -161,6 +161,7 @@ Out tokens used: 50
     "Formatted": "The descriptive statistics for the 'Budget' column reveal a mean of approximately 9.56 and a median of 7.5, based on a count of 104 entries."
 }
 ```
+Taskability error. The initial prompts include the rule to only use one ERROR, FORMAT, or START.
 
 ---
 
@@ -217,15 +218,19 @@ Out tokens used: 81
     }
 }
 ```
+Task error, as there is a rule to include every RESULT in a subsequent function.
 
 #### Error: RESULT1 is not used in a subsequent function.
 Response time: 0.9834918975830078 seconds \
 In tokens used: 2362 \
 Out tokens used: 43
+```json
 {
     "Next": "ERROR",
     "Reason": "I am missing a function that can specifically retrieve or assess the correlation value between 'AP' and 'SP' directly after calculating the correlation matrix."
 }
+```
+Task error, as there is a rule to include every RESULT in a subsequent function.
 
 ### Attempt = 2
 #### Is there a correlation between 'AP' and 'SP'?
@@ -279,6 +284,7 @@ Out tokens used: 81
     }
 }
 ```
+Task error, as there is a rule to include every RESULT in a subsequent function.
 
 #### Error: RESULT1 is not used in a subsequent function.
 Response time: 0.836712121963501 seconds \
@@ -290,6 +296,7 @@ Out tokens used: 34
     "Reason": "missing function to directly check the correlation between 'AP' and 'SP' after generating correlation matrix."
 }
 ```
+Task error, as there is a rule to include every RESULT in a subsequent function.
 
 ---
 
@@ -355,6 +362,7 @@ Out tokens used: 71
     }
 }
 ```
+Accuracy error, as the model should intrinsically know that 'average' is not a valid agg_func parameter.
 
 #### Question formatting
 Response time: 1.4591290950775146 seconds \
@@ -426,6 +434,7 @@ Out tokens used: 125
     }
 }
 ```
+Task error, as there is a rule to include every RESULT in a subsequent function.
 
 #### Error: Error: RESULT1 is not used in a subsequent function.
 Response time: 2.5941131114959717 seconds \
@@ -454,6 +463,7 @@ Out tokens used: 122
     }
 }
 ```
+Task error, as there is a rule to include every RESULT in a subsequent function.
 
 #### Error: 'SeriesGroupBy' object has no attribute 'average'
 Response time: 1.3687443733215332 seconds \
@@ -465,6 +475,7 @@ Out tokens used: 56
     "Reason": "The 'grouped_summary' function does not support the 'average' aggregation function. I need to use 'column_average' for aggregating the average 'Vzsom' per unique 'Budget' after filtering."
 }
 ```
+Accuracy error, as the model should intrinsically know that 'average' is not a valid agg_func parameter.
 
 ### Attempt = 2
 #### What is the average 'Vzsom' per unique 'Budget', only for rows where 'AP' is greater than 100?
@@ -505,3 +516,4 @@ Out tokens used: 53
     "Reason": "The previous attempt incorrectly referenced the filtered data without defining it as a DataFrame first, which is not valid. I need to ensure I properly pass the filtered data from one function to the next."
 }
 ```
+Task error, as there is a rule to not add comments to the answer (which is what caused this error).

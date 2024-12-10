@@ -75,7 +75,7 @@
             "InTokensUsed": 2071,
             "OutTokensUsed": 44
         },
-        "Error1": {
+        "Task_Error1": {
             "ResponseTimeSeconds": 2.1220672130584717,
             "InTokensUsed": 2156,
             "OutTokensUsed": 49,
@@ -87,7 +87,7 @@
             "InTokensUsed": 2071,
             "OutTokensUsed": 44
         },
-        "Error2": {
+        "Task_Error2": {
             "ResponseTimeSeconds": 1.211461067199707,
             "InTokensUsed": 2156,
             "OutTokensUsed": 38,

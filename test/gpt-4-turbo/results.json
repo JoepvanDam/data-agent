@@ -75,19 +75,19 @@
             "InTokensUsed": 2044,
             "OutTokensUsed": 44
         },
-        "Error1": {
+        "Task_Error1": {
             "ResponseTimeSeconds": 1.4798316955566406,
             "InTokensUsed": 2130,
             "OutTokensUsed": 19,
             "Error_text": "Error: could not convert string to float: 'SMT'",
-            "Stop": "Missing a function to clean non-numeric values before correlation calculation."
+            "Stop": "missing_function_explanation"
         },
         "Attempt2": {
             "ResponseTimeSeconds": 1.5659997463226318,
             "InTokensUsed": 2044,
             "OutTokensUsed": 44
         },
-        "Error2": {
+        "Task_Error2": {
             "ResponseTimeSeconds": 0.9879457950592041,
             "InTokensUsed": 2130,
             "OutTokensUsed": 19,

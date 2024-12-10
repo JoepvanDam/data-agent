@@ -38,6 +38,7 @@ Out tokens used: 12
     "FORMAT": "1738.06"
 }
 ```
+Task error because it is not following the format given in the prompt.
 
 #### Error: 'Next'
 Response time: 0.5139963626861572 seconds \
@@ -48,6 +49,8 @@ Out tokens used: 24
     "ERROR": "An error occurred when calculating the average value of the AP column. Please try again."
 }
 ```
+Task error because it is not following the format given in the prompt.
+
 Stopping here. The model is not following the correct format for the response. This counts as a fail.
 
 ### Attempt = 2
@@ -63,7 +66,7 @@ Out tokens used: 34
     }
 }
 ```
-Model just made up a number. Fail. I will give it one more attempt, just to see what happens.
+Task error as the model just made up a number instead of using the functions as it was instructed. Fail. I will give it one more attempt, just to see what happens.
 
 ### Attempt = 3
 #### What is the average value of the AP column?
@@ -78,7 +81,7 @@ Out tokens used: 34
     }
 }
 ```
-Model just made up a number. Fail. Not looking good for gpt-3.5-turbo-0125 if it already failed the first question...
+Again, task error as the model just made up a number. Fail. Not looking good for gpt-3.5-turbo-0125 if it already failed the first question...
 ---
 
 ## Question 2
@@ -127,7 +130,7 @@ Out tokens used: 19
     'Reason': 'missing_function_explanation'
 }
 ```
-Stopping here as the model is not even getting close.
+Task error because it is not following the given format. Stopping here as the model is not even getting close.
 
 ### Attempt = 2
 #### What is the total AP for each unique value in the 'Vznemer' column?
@@ -159,7 +162,7 @@ Out tokens used: 19
     'Reason': 'missing_function_explanation'
 }
 ```
-Stopping here as the model is not even getting close.
+Task error because it is not following the given format. Stopping here as the model is not even getting close.
 
 ---
 
@@ -175,7 +178,7 @@ Out tokens used: 19
     "Reason": "missing_function_explanation"
 }
 ```
-Every other model has been able to answer this question. I will give it one more attempt.
+Task error as a function for this is available.Every other model has been able to answer this question. I will give it one more attempt.
 
 ### Attempt = 2
 #### What is the total AP for entries where 'Budget' is greater than 10?
@@ -188,7 +191,7 @@ Out tokens used: 19
     "Reason": "missing_function_explanation"
 }
 ```
-This model is dumb.
+Task error. This model is dumb.
 
 ---
 
@@ -204,7 +207,7 @@ Out tokens used: 36
     "Formatted": "The mean of the 'Budget' column is [mean_value] and the median is [median_value]."
 }
 ```
-The model did not provide the actual mean and median values. I will give it one more attempt.
+Task error. Model again just making up variables and numbers that do not exist.. I will give it one more attempt.
 
 ### Attempt = 2
 #### What are some of the descriptive statistics (mean, median) for the 'Budget' column?
@@ -234,7 +237,7 @@ Out tokens used: 29
     "Formatted": "Yes, there is a correlation between 'AP' and 'SP'."
 }
 ```
-I mean, it's not TECHNICALLY wrong...
+Task error, making up things. But I mean, it's not TECHNICALLY wrong...
 
 ### Attempt = 2
 #### Is there a correlation between 'AP' and 'SP'?
@@ -247,7 +250,7 @@ Out tokens used: 29
     "Formatted": "Yes, there is a correlation between 'AP' and 'SP'."
 }
 ```
-How did we ever think this model was good...? I will finish the test, but I am not hopeful for any correct answers.
+Task error. How did we ever think this model was good...? I will finish the test, but I am not hopeful for any correct answers.
 
 ---
 
@@ -281,7 +284,7 @@ Out tokens used: 19
     'Reason': 'missing_function_explanation'
 }
 ```
-This is going nowhere. No second attempt needed.
+Task error. This is going nowhere. No second attempt needed.
 
 ---
 
@@ -316,7 +319,7 @@ Out tokens used: 19
     'Reason': 'missing_function_explanation'
 }
 ```
-Same as before. No second attempt needed.
+Task error. Same as before. No second attempt needed.
 
 ---
 
@@ -332,7 +335,7 @@ Out tokens used: 19
     "Reason": "missing_function_explanation"
 }
 ```
-Should I even bother with a second attempt...? I will, just to be thorough.
+Task error. Should I even bother with a second attempt...? I will, just to be thorough.
 
 ### Attempt = 2
 #### What is the average 'Vzsom' per unique 'Budget', only for rows where 'AP' is greater than 100?
@@ -345,4 +348,4 @@ Out tokens used: 19
     "Reason": "missing_function_explanation"
 }
 ```
-Conclusion: gpt-3.5-turbo-0125 is bad.
+Task error. Conclusion: gpt-3.5-turbo-0125 is bad.

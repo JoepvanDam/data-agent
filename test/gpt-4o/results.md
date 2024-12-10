@@ -181,6 +181,7 @@ Out tokens used: 49
     "Reason": "The correlation_matrix function requires all data to be numerical, but there are non-numerical columns in the dataset; hence, a method to select only numerical columns is missing."
 }
 ```
+Task error (different from when other models made this mistake, because of its reasoning:), because it says there is no method to select only numerical columns, but the drop_columns function exists in the prompt.
 
 ### Attempt = 2
 #### Is there a correlation between 'AP' and 'SP'?
@@ -209,6 +210,7 @@ Out tokens used: 38
     "Reason": "There is no function available to directly calculate the correlation between two specific columns without including string data in the correlation matrix calculation."
 }
 ```
+Task error, same as above.
 
 ---
 

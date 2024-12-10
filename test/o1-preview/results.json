@@ -75,21 +75,20 @@
             "InTokensUsed": 2071,
             "OutTokensUsed": 35
         },
-        "Error1": {
-            "Error_text": "Error: Missing function to compute the correlation between two specific columns or to extract specific correlation values from the correlation matrix.",
-            "Stop": "A function to clean or remove non-numeric values from numerical columns is missing."
+        "Accuracy_Error1": {
+            "Error_text": "Error: Missing function to compute the correlation between two specific columns or to extract specific correlation values from the correlation matrix."
         },
         "Attempt2": {
             "ResponseTimeSeconds": 26.421767473220825,
             "InTokensUsed": 2071,
             "OutTokensUsed": 44
         },
-        "Error2": {
+        "Task_Error2": {
             "ResponseTimeSeconds": 20.54400658607483,
             "InTokensUsed": 2156,
             "OutTokensUsed": 30,
             "Error_text": "Error: could not convert string to float: 'SMT'",
-            "Stop": "There is no function available to directly calculate the correlation between two specific columns without including string data in the correlation matrix calculation."
+            "Stop": "A function to clean or remove non-numeric values from numerical columns is missing."
         },
         "Attempts": 2,
         "Success": false

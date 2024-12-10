@@ -10,35 +10,29 @@
             "InTokensUsed": 112,
             "OutTokensUsed": 31
         },
-        "Error1": {
+        "Task_Error1": {
             "ResponseTimeSeconds": 0.35199975967407227,
             "InTokensUsed": 203,
             "OutTokensUsed": 12,
             "Error_text": "Error: Unknown 'Next' element: The average value of the AP column is 1738.06. Valid options include: ERROR, FORMAT or START"
         },
-        "Error2": {
+        "Task_Error2": {
             "ResponseTimeSeconds": 0.5139963626861572,
             "InTokensUsed": 249,
             "OutTokensUsed": 24,
             "Error_text": "Error: 'Next'"
         },
-        "Attempt2": {
+        "Task_Error3": {
             "ResponseTimeSeconds": 0.7063190937042236,
             "InTokensUsed": 2038,
-            "OutTokensUsed": 34
+            "OutTokensUsed": 34,
+            "Error_text": "This was attempt 2. Model just made up a number: 5633.536363636364. Fail."
         },
-        "Error3": {
-            "Error_text": "Model just made up a number: 5633.536363636364. Fail.",
-            "Stop": "Invalid result."
-        },
-        "Attempt3": {
+        "Task_Error4": {
             "ResponseTimeSeconds": 0.7819976806640625,
             "InTokensUsed": 2038,
-            "OutTokensUsed": 34
-        },
-        "Error4": {
-            "Error_text": "Model just made up a number: 42.29090909090909. Fail.",
-            "Stop": "Invalid result."
+            "OutTokensUsed": 34,
+            "Error_text": "I gave it a third attempt to see what happened. Model again just made up a number: 42.29090909090909. Fail."
         },
         "Attempts": 3,
         "Success": false
@@ -59,7 +53,7 @@
             "InTokensUsed": 2054,
             "OutTokensUsed": 73
         },
-        "Error1": {
+        "Task_Error1": {
             "ResponseTimeSeconds": 0.5282537937164307,
             "InTokensUsed": 2176,
             "OutTokensUsed": 19,
@@ -70,7 +64,7 @@
             "InTokensUsed": 2054,
             "OutTokensUsed": 73
         },
-        "Error2": {
+        "Task_Error2": {
             "ResponseTimeSeconds": 0.4590001106262207,
             "InTokensUsed": 2176,
             "OutTokensUsed": 19,
@@ -80,61 +74,49 @@
         "Success": false
     },
     "Question4": {
-        "Attempt1": {
+        "Task_Error1": {
             "ResponseTimeSeconds": 0.5780856609344482,
             "InTokensUsed": 2052,
-            "OutTokensUsed": 19
+            "OutTokensUsed": 19,
+            "Error_text": "This was attempt 1. Error: missing_function_explanation"
         },
-        "Error1": {
-            "Error_text": "Error: missing_function_explanation"
-        },
-        "Attempt2": {
+        "Task_Error2": {
             "ResponseTimeSeconds": 0.8989989757537842,
             "InTokensUsed": 2052,
-            "OutTokensUsed": 19
-        },
-        "Error2": {
-            "Error_text": "Error: missing_function_explanation"
+            "OutTokensUsed": 19,
+            "Error_text": "This was attempt 2. Error: missing_function_explanation"
         },
         "Attempts": 2,
         "Success": false
     },
     "Question5": {
-        "Attempt1": {
+        "Task_Error1": {
             "ResponseTimeSeconds": 0.6519994735717773,
             "InTokensUsed": 2056,
-            "OutTokensUsed": 36
+            "OutTokensUsed": 36,
+            "Error_text": "This was attempt 1. Model again just making up variables and numbers that do not exist."
         },
-        "Error1": {
-            "Error_text": "Model did not provide actual values, only placeholders."
-        },
-        "Attempt2": {
+        "Task_Error2": {
             "ResponseTimeSeconds": 0.9579999446868896,
             "InTokensUsed": 2056,
-            "OutTokensUsed": 41
-        },
-        "Error2": {
-            "Error_text": "Model made up numbers: mean: 4566.45, median: 3452.11. Fail."
+            "OutTokensUsed": 41,
+            "Error_text": "This was attempt 2. Model again just making up variables and numbers that do not exist."
         },
         "Attempts": 2,
         "Success": false
     },
     "Question6": {
-        "Attempt1": {
+        "Task_Error1": {
             "ResponseTimeSeconds": 0.6560013294219971,
             "InTokensUsed": 2044,
-            "OutTokensUsed": 29
+            "OutTokensUsed": 29,
+            "Error_text": "This was attempt 1. I mean, it's not technically wrong, but it's not following the instructions: 'Yes, there is a correlation between 'AP' and 'SP.''"
         },
-        "Error1": {
-            "Error_text": "Model gave a generic response without actual calculation or verification: 'Yes, there is a correlation between 'AP' and 'SP.''"
-        },
-        "Attempt2": {
+        "Task_Error2": {
             "ResponseTimeSeconds": 0.6799983978271484,
             "InTokensUsed": 2044,
-            "OutTokensUsed": 29
-        },
-        "Error2": {
-            "Error_text": "Model repeated generic response without justification or verification."
+            "OutTokensUsed": 29,
+            "Error_text": "This was attempt 2. I mean, it's not technically wrong, but it's not following the instructions: 'Yes, there is a correlation between 'AP' and 'SP.''"
         },
         "Attempts": 2,
         "Success": false
@@ -145,11 +127,11 @@
             "InTokensUsed": 2050,
             "OutTokensUsed": 64
         },
-        "Error1": {
+        "Task_Error1": {
             "ResponseTimeSeconds": 0.4790017604827881,
             "InTokensUsed": 2165,
             "OutTokensUsed": 19,
-            "Error_text": "Error: Unknown 'Next' element: plot_scatter_plot. Valid options include: ERROR, FORMAT or START"
+            "Error_text": "No second attempt needed, this model is failing everthing. Error: Unknown 'Next' element: plot_scatter_plot. Valid options include: ERROR, FORMAT or START"
         },
         "Attempts": 1,
         "Success": false
@@ -160,31 +142,27 @@
             "InTokensUsed": 2044,
             "OutTokensUsed": 74
         },
-        "Error1": {
+        "Task_Error1": {
             "ResponseTimeSeconds": 0.5108988285064697,
             "InTokensUsed": 2167,
             "OutTokensUsed": 19,
-            "Error_text": "Error: Unknown 'Next' element: grouped_summary. Valid options include: ERROR, FORMAT or START"
+            "Error_text": "Same as before, no second attempt needed. Error: Unknown 'Next' element: grouped_summary. Valid options include: ERROR, FORMAT or START"
         },
         "Attempts": 1,
         "Success": false
     },
     "Question9": {
-        "Attempt1": {
+        "Task_Error1": {
             "ResponseTimeSeconds": 2.206012487411499,
             "InTokensUsed": 2072,
-            "OutTokensUsed": 19
+            "OutTokensUsed": 19,
+            "Error_text": "This was attempt 1. Error: missing_function_explanation"
         },
-        "Error1": {
-            "Error_text": "Error: missing_function_explanation"
-        },
-        "Attempt2": {
+        "Task_Error2": {
             "ResponseTimeSeconds": 0.613731861114502,
             "InTokensUsed": 2072,
-            "OutTokensUsed": 19
-        },
-        "Error2": {
-            "Error_text": "Error: missing_function_explanation"
+            "OutTokensUsed": 19,
+            "Error_text": "This was attempt 2. Error: missing_function_explanation"
         },
         "Attempts": 2,
         "Success": false

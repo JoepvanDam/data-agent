@@ -165,6 +165,7 @@ Out tokens used: 35
     "Reason": "Missing function to compute the correlation between two specific columns or to extract specific correlation values from the correlation matrix."
 }
 ```
+This is an accuracy error because there *IS* a way to do this, namely by dropping all other columns and running a correlation matrix on just AP/SP.
 
 ### Attempt = 2
 #### Is there a correlation between 'AP' and 'SP'?
@@ -193,6 +194,7 @@ Out tokens used: 30
     "Reason": "A function to clean or remove non-numeric values from numerical columns is missing."
 }
 ```
+Task error, as drop_columns exists and is given in the prompt.
 
 ---
 

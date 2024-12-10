@@ -60,10 +60,11 @@
             "InTokensUsed": 2083,
             "OutTokensUsed": 50
         },
-        "Formatting1": {
+        "Accuracy_Error1": {
             "ResponseTimeSeconds": 5.4005115032196045,
             "InTokensUsed": 185,
-            "OutTokensUsed": 81
+            "OutTokensUsed": 81,
+            "Error_text": "The 'try' is a successful format, but it's an accuracy error, because the model makes the assumption that the numbers are millions instead of floats. Thus, it did not accurately format the answer."
         },
         "Attempt2": {
             "ResponseTimeSeconds": 6.453967571258545,
@@ -85,7 +86,7 @@
             "InTokensUsed": 2071,
             "OutTokensUsed": 30
         },
-        "Error1": {
+        "Accuracy_Error1": {
             "Error_text": "Error: Missing a function to extract the correlation between two specific columns from the correlation matrix."
         },
         "Attempt2": {
@@ -93,7 +94,7 @@
             "InTokensUsed": 2071,
             "OutTokensUsed": 44
         },
-        "Error2": {
+        "Task_Error2": {
             "ResponseTimeSeconds": 19.114718675613403,
             "InTokensUsed": 2156,
             "OutTokensUsed": 159,
@@ -124,7 +125,7 @@
             "InTokensUsed": 2071,
             "OutTokensUsed": 71
         },
-        "Error1": {
+        "Accuracy_Error1": {
             "ResponseTimeSeconds": 6.110750675201416,
             "InTokensUsed": 2184,
             "OutTokensUsed": 71,
@@ -145,7 +146,7 @@
             "InTokensUsed": 2097,
             "OutTokensUsed": 121
         },
-        "Error1": {
+        "Accuracy_Error1": {
             "ResponseTimeSeconds": 7.029011249542236,
             "InTokensUsed": 2260,
             "OutTokensUsed": 121,
