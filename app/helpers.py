@@ -4,9 +4,7 @@
 
 
 # TODO: Add testing options for prompting:
-# 1. How long the model takes to respond # DONE
-# 2. How many prompts are needed to get the final result DONE
-# 3. How many errors occur during the process and what they are
+# 1. How many errors occur during the process and what they are
 
 
 from functions import function_map

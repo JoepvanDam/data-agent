@@ -3,8 +3,7 @@
 ########################################################
 
 
-# TODO: Add ability to read 'average' into grouped_summary function
-# TODO: Add more functions to the function_map
+# TODO: Add more relevant functions
 # TODO: Make function map automatically generated (if possible)
 
 
