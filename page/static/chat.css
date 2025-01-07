@@ -1,0 +1,62 @@
+@import url('base.css');
+@import url('chatbar.css');
+
+.backHome {
+    font-size: 20px;
+    position: absolute;
+    padding: 10px;
+    margin: 0;
+    top: 10px;
+    left: 5px;
+    border-radius: 10px;
+    background-color: rgb(75, 75, 90);
+    text-decoration: none;
+    color: white;
+}
+
+.backHome:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+#chatbox {
+    padding: 0 20px;
+    width: 80%;
+    height: 80%;
+    overflow-y: scroll;
+    font-size: 20px;
+}
+
+/* Custom scrollbar styling for modern dark mode feel */
+::-webkit-scrollbar {
+    width: 10px;  /* Width of the vertical scrollbar */
+    height: 10px; /* Height of the horizontal scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background-color: rgb(60, 60, 75); /* Dark background for the track */
+    border-radius: 10px;  /* Rounded corners for the track */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(120, 120, 150, 0.8); /* Light grey thumb for contrast */
+    border-radius: 10px;  /* Rounded corners for thumb */
+    border: 2px solid rgba(60, 60, 75, 1); /* Adds some padding effect inside the track */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(150, 150, 170, 1); /* Slightly lighter color on hover for better visibility */
+}
+
+/* For Firefox */
+* {
+    scrollbar-width: thin;  /* Thinner scrollbar */
+    scrollbar-color: rgba(120, 120, 150, 0.8) rgba(60, 60, 75); /* Thumb and track color */
+}
+
+.userMessage {
+    padding: 5px;
+    border-radius: 5px;
+    text-align: right;
+    background-color: rgb(75, 75, 90);
+}

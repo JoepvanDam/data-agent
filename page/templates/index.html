@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <script src="https://kit.fontawesome.com/98cb1cd503.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <h1 class='title'>Data Agent</h1>
+
+    <form class='chatWrapper' action="{{ url_for('chat') }}" method="POST" enctype="multipart/form-data">
+        <button class='fileButton left' type="button" onclick="document.getElementById('fileInput').click();">
+            <i class="fa fa-file"></i>
+        </button>
+        <input class="hidden" type="file" id="fileInput" name="file" accept='.csv' multiple>
+        <input class='chatInput' type='text' placeholder='Type your message...' name="message">
+        <button class='fileButton right' type='submit'>
+            <i class="fa-solid fa-paper-plane"></i>
+        </button>
+    </form>
+
+</body>
+
+</html>

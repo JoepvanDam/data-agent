@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Agent | Chat</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='chat.css') }}">
+    <script src="https://kit.fontawesome.com/98cb1cd503.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+</head>
+
+<body>
+    <h1>Data Agent chat with files: {{ file_paths | map('basename') | join(', ') }}</h1>
+
+    <div id="chatbox">
+        <p class='userMessage'> {{ message }} &#11164;</p>
+        <p>&#11166; Upload success! Processing files...</p>
+    </div>
+
+    <div class='chatWrapper'>
+        <input class='chatInput' id='chatInput' type='text' placeholder='Type your message...' name="message">
+        <button class='fileButton right' onclick='question()'>
+            <i class="fa-solid fa-paper-plane"></i>
+        </button>
+    </div>
+
+    <a class='backHome' href="{{ url_for('home') }}">Go back</a>
+
+    <script>
+        const socket = io();
+
+        // Get file paths passed from the server-side
+        const filePaths = {{ file_paths | tojson | safe }};
+        var canAsk = false;
+        var conversation_history = [];
+
+        // Send file paths to the server for processing
+        window.onload = function () {
+            socket.emit("process", { "file_paths": filePaths, "message": "{{ message }}", "conversation_history" : [] });
+        };
+
+        // Listen for updates for chatbox
+        socket.on("update_chatbox", function (data) {
+            const summaryElement = document.getElementById("chatbox");
+            const newSummary = document.createElement("p");
+
+            newSummary.innerHTML = `&#11166; ${data.message}`;
+            summaryElement.appendChild(newSummary);
+        });
+
+        // Allow new question to be asked
+        socket.on("process_finished", (response) => {
+            canAsk = true;
+            conversation_history = response.conversation_history;
+            console.log(conversation_history);
+        });
+
+        // New question
+        function question() {
+            if (canAsk == false) { console.log("Returning..."); return }
+            canAsk = false;
+            console.log("Questioning...");
+
+            question_message = document.getElementById('chatInput').value;
+            socket.emit("process", { "file_paths": filePaths, "message": question_message, "conversation_history" : conversation_history})
+        }
+    </script>
+</body>
+
+</html>

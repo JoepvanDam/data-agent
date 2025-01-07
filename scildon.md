@@ -12,3 +12,6 @@ C:\Users\joep\Documents\PyEmbed\python.exe -m pip {COMMAND} [OPTIONS]
 * openai
 * pandas
 * tiktoken
+* flask
+* python-dotenv
+* flask-socketio
