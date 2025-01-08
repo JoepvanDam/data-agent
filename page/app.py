@@ -140,7 +140,7 @@ def process(data):
     ---
     User Question: {message}
     """
-    
+
     # Initialize the OpenAI client
     client = OpenAI(api_key=os.getenv("API_KEY"))
     model = os.getenv("MODEL")
@@ -359,7 +359,7 @@ def execute_agent_instructions(instructions, plot_save_path="plot.png"):
             time.sleep(1)
             print(f"Plot saved as {plot_save_path}")
             plt.close()  # Close the plot to avoid overlapping
-            return f"<img src='{os.path.relpath(plot_save_path, "page")}'>", True
+            return f"""<img src='{os.path.relpath(plot_save_path, "page")}'>""", True
         else:
             result = func(**resolved_params)
             if result is not None:

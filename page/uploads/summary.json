@@ -1,3 +1,1 @@
-{
-    "results.csv": "Data file name: results.csv\nNumber of rows: 54\nColumn info with format [name,num unique values,type]:[[Model,6,object],[Question,9,int64],[Input_size,36,int64],[Output_size,39,int64],[Time_taken,54,float64],[Attempts,3,int64],[Success,2,bool],[Tries,6,int64],[Accuracy_errors,2,int64],[Task_errors,5,int64]]"
-}
+{}
