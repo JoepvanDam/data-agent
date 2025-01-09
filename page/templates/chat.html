@@ -19,7 +19,7 @@
     </div>
 
     <div class='chatWrapper'>
-        <input class='chatInput' id='chatInput' type='text' placeholder='Type your message...' name="message">
+        <input class='chatInput' id='chatInput' type='text' placeholder='Type your message...' name="message" autocomplete="off">
         <button class='fileButton right' onclick='question()'>
             <i class="fa-solid fa-paper-plane"></i>
         </button>
@@ -34,10 +34,11 @@
         const filePaths = {{ file_paths | tojson | safe }};
         var canAsk = false;
         var conversation_history = [];
+        var num_images = 0;
 
         // Send file paths to the server for processing
         window.onload = function () {
-            socket.emit("process", { "file_paths": filePaths, "message": "{{ message }}", "conversation_history" : [] });
+            socket.emit("process", { "file_paths": filePaths, "message": "{{ message }}", "conversation_history" : [], "num_images": 0 });
         };
 
         // Listen for updates for chatbox
@@ -53,17 +54,30 @@
         socket.on("process_finished", (response) => {
             canAsk = true;
             conversation_history = response.conversation_history;
-            console.log(conversation_history);
+            num_images = response.num_images;
         });
+
+        // If user presses enter and the input is not empty, ask the question
+        document.getElementById('chatInput').addEventListener('keypress', function (e) { if (e.key === 'Enter') { question(); } });
 
         // New question
         function question() {
             if (canAsk == false) { console.log("Returning..."); return }
+            if (document.getElementById('chatInput').value === "") { console.log("Empty..."); return }
+
             canAsk = false;
             console.log("Questioning...");
 
+            const summaryElement = document.getElementById("chatbox");
+            const newSummary = document.createElement("p");
+
+            newSummary.innerHTML = `${document.getElementById('chatInput').value} &#11164;`;
+            newSummary.className = "userMessage";
+            summaryElement.appendChild(newSummary);
+            
             question_message = document.getElementById('chatInput').value;
-            socket.emit("process", { "file_paths": filePaths, "message": question_message, "conversation_history" : conversation_history})
+            socket.emit("process", { "file_paths": filePaths, "message": question_message, "conversation_history" : conversation_history, "num_images": num_images });
+            document.getElementById('chatInput').value = "";
         }
     </script>
 </body>

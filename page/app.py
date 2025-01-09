@@ -64,28 +64,39 @@ def process(data):
     file_paths = data.get("file_paths")
     message = data.get("message")
     conversation_history = data.get("conversation_history")
-    print("Test:", conversation_history)
+    num_images = data.get("num_images")
     summaries = {}
 
     for file_path in file_paths:
         file_name = os.path.basename(file_path)
         
-        # Create file summary (for CSV files only)
-        if file_name.endswith('.csv'):
-            data = pd.read_csv(file_path)
-            column_info = ""
-            for col in data.columns:
-                column_info += f"[{col},{data[col].nunique()},{data[col].dtype}],"
+        # Create file summary (supports CSV, JSON, and Excel files)
+        try:
+            if file_name.endswith('.csv'):
+                data = pd.read_csv(file_path)
+            elif file_name.endswith('.json'):
+                data = pd.read_json(file_path)
+            elif file_name.endswith('.xlsx') or file_name.endswith('.xls'):
+                data = pd.read_excel(file_path)
+            else:
+                socketio.emit("update_chatbox", {"message": f"Unsupported file format: {file_name}. Please upload a valid file."})
+                return
+        except Exception as e:
+            socketio.emit("update_chatbox", {"message": f"Error reading file: {file_name}. Please upload a valid file."})
+            return
 
-            summary_text = f"Data file name: {file_name}\nNumber of rows: {data.shape[0]}\nColumn info with format [name,num unique values,type]:[{column_info[0:-1]}]"
-            summaries[file_name] = summary_text
+        column_info = ""
+        for col in data.columns:
+            column_info += f"[{col},{data[col].nunique()},{data[col].dtype}],"
 
+        summary_text = f"Data file name: {file_name}\nNumber of rows: {data.shape[0]}\nColumn info with format [name,num unique values,type]:[{column_info[0:-1]}]"
+        summaries[file_name] = summary_text
 
-            # Send update for the current file
-            socketio.emit("update_chatbox", {"message": f'Processed: <strong>{file_name}</strong>'})
+        # Send update for the current file
+        socketio.emit("update_chatbox", {"message": f'Processed: <strong>{file_name}</strong>'})
 
-            # Wait for 1 second before processing the next file
-            time.sleep(1)
+        # Wait for 1 second before processing the next file
+        time.sleep(1)
     
     # Save all summaries to the summary.json file
     summaries.update(summaries)
@@ -122,17 +133,14 @@ def process(data):
             },
             ...
         }
-        4. If no valid function applies, return the following and explain what function you are missing:
-        {
-            'Next': 'ERROR',
-            'Reason': 'missing_function_explanation'
-        }
-        5. If you can answer the question with the current information, return:
+        4. If you can answer the question with the current information, return:
         {
             'Next': 'FORMAT',
             'Formatted': 'formatted_answer'
         }
-        6. DO NOT add comments, ```python code blocks```, or any other formatting or code to the response. ONLY return one of the three fitting JSON formats above.
+        5. DO NOT add comments, ```python code blocks```, or any other formatting or code to the response. ONLY return one of the three fitting JSON formats above.
+        6. You can use pd.read_... for reading data.
+        7. If you need to plot, use the plt.show() function. The plot will be saved and displayed to the user.
     """
 
     init_prompt = f"""
@@ -163,11 +171,13 @@ def process(data):
     attempts = 0
     while True:
         attempts += 1
-        print(attempts, conversation_history)
+        print("\n", attempts, conversation_history, "\n")
         
         # Dev check
-        stopIt = input(f"Current attempt: {attempts}. Want to stop? Enter Y, anything else will continue.")
-        if stopIt == "Y": break
+        # stopIt = input(f"Current attempt: {attempts}. Want to stop? Enter Y, anything else will continue.")
+        # if stopIt == "Y": break
+        if attempts > 3 and answer_type != "FORMAT":
+            socketio.emit("update_chatbox", {"message": "Oops! Model failed to generate a valid answer, please try again."})
         
         # Call model
         chat_completion = client.chat.completions.create(
@@ -178,6 +188,7 @@ def process(data):
         # Extract assistant's response
         assistant_response = chat_completion.choices[0].message.content
         conversation_history.append({"role": "assistant", "content": assistant_response})
+        print("\n", assistant_response, "\n")
         
         # Process and validate response
         socketio.emit("update_chatbox", {"message": "Validating functions..." })
@@ -200,10 +211,10 @@ def process(data):
                 break
             elif answer_type == 'START': # If it's a function list, try running functions and send image to box OR format-request to AI
                 socketio.emit("update_chatbox", {"message": "Running functions..." })
-                results, isPlot = execute_agent_instructions(processed, os.path.join("page/static", "plot.png"))
-                print(results, isPlot)
+                results, isPlot = execute_agent_instructions(processed, os.path.join("page/static/images", f"plot_{num_images}.png"))
                 if isPlot:
                     socketio.emit("update_chatbox", {"message": f"{results}" })
+                    num_images += 1
                     break
                 else:
                     format_prompt = f"Following is a dictionary with the results of all given functions in order, please use this to give a FORMAT response in the earlier JSON format: {results}"
@@ -218,7 +229,7 @@ def process(data):
             conversation_history.append({"role": "user", "content": error_prompt})
             continue
     # Emit event to notify the client that processing is done
-    socketio.emit("process_finished", {"conversation_history" : conversation_history} )
+    socketio.emit("process_finished", { "conversation_history" : conversation_history, "num_images": num_images })
 
 def preprocess_json(json_string):
     """
@@ -301,7 +312,7 @@ def validate_ai_response(ai_response):
 
     return (answer_type, True)
 
-def execute_agent_instructions(instructions, plot_save_path="plot.png"):
+def execute_agent_instructions(instructions, plot_save_path):
     """
     Execute the Python, Pandas, Numpy, and Matplotlib functions provided in the instructions.
     
@@ -359,7 +370,15 @@ def execute_agent_instructions(instructions, plot_save_path="plot.png"):
             time.sleep(1)
             print(f"Plot saved as {plot_save_path}")
             plt.close()  # Close the plot to avoid overlapping
-            return f"""<img src='{os.path.relpath(plot_save_path, "page")}'>""", True
+            return f"""
+            <img src='{os.path.relpath(plot_save_path, "page")}'>
+            <br>
+            <a href="{os.path.relpath(plot_save_path, "page")}" download="{os.path.relpath(plot_save_path, "page")}">
+                <button class='download_button'>
+                    <i class="fa-solid fa-download"></i>
+                </button>
+            </a>
+            """, True
         else:
             result = func(**resolved_params)
             if result is not None:

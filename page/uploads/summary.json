@@ -1,1 +1,3 @@
-{}
+{
+    "dummy_data.csv": "Data file name: dummy_data.csv\nNumber of rows: 110\nColumn info with format [name,num unique values,type]:[[Type,3,object],[Polisnr,95,object],[Submitted,95,object],[Opendatum,93,object],[Naamtps,9,object],[Nummer,95,int64],[Naaminsp,3,object],[Lnk,95,int64],[Level,95,float64],[DuurV,90,float64],[Vznemer,4,object],[Tariefnaam,16,object],[Vzsom,100,float64],[AP,37,int64],[SP,65,int64],[APE,95,float64],[Prdlink,95,int64],[Ingangsd,95,object],[Prov,3,object],[Budget,14,float64],[StCnv,10,float64]]"
+}

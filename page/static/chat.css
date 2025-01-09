@@ -27,6 +27,17 @@
     font-size: 20px;
 }
 
+.download_button {
+    font-size: 16px;
+    padding: 10px 20px;
+    background-color: #4B4B5A;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 25px;
+}
+
 /* Custom scrollbar styling for modern dark mode feel */
 ::-webkit-scrollbar {
     width: 10px;  /* Width of the vertical scrollbar */
