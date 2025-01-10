@@ -9,7 +9,7 @@
     top: 10px;
     left: 5px;
     border-radius: 10px;
-    background-color: rgb(75, 75, 90);
+    background-color: rgb(65, 65, 80);
     text-decoration: none;
     color: white;
 }
@@ -27,16 +27,34 @@
     font-size: 20px;
 }
 
-.download_button {
+.button_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 25px;
+}
+
+.download_button, .thumbs_up_button, .thumbs_down_button {
     font-size: 16px;
-    padding: 10px 20px;
-    background-color: #4B4B5A;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-left: 25px;
 }
+
+.download_button {
+    padding: 10px 20px;
+    background-color: #4B4B5A;
+}
+
+.thumbs_up_button, .thumbs_down_button {
+    font-size: 24px;
+    background-color: rgb(40, 40, 55);
+}
+
+.download_button:hover { background-color: #5B5B6A; }
+.thumbs_up_button:hover { color: lightgreen; }
+.thumbs_down_button:hover { color: lightcoral; }
 
 /* Custom scrollbar styling for modern dark mode feel */
 ::-webkit-scrollbar {

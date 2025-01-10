@@ -6,3 +6,16 @@
     margin: 0 0 20px 0;
     font-size: 48px;
 }
+
+.AIMagic {
+    background: linear-gradient(90deg, white, lightblue, cyan, lightblue, white);
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: aicolors 3s linear infinite;
+}
+
+@keyframes aicolors {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}

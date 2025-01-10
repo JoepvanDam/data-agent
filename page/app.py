@@ -4,6 +4,7 @@ from flask_socketio import SocketIO
 import matplotlib.pyplot as plt
 from dotenv import load_dotenv
 from openai import OpenAI
+from PIL import Image
 import seaborn as sns
 import pandas as pd
 import numpy as np
@@ -166,7 +167,7 @@ def process(data):
     
     # Send waiting message to chatbox
     socketio.emit("update_chatbox", {"message": "Figuring out which functions to run..."})
-    
+
     answer_type = ''
     attempts = 0
     while True:
@@ -334,12 +335,15 @@ def execute_agent_instructions(instructions, plot_save_path):
         parameters = step["parameters"]  # e.g., { "filepath_or_buffer": "results.csv" }
 
         # Parse module and function name (e.g., "pd.read_csv")
-        module_name, func_name = function_name.split(".")[0], function_name.split(".")[1]
-
-        # Import the appropriate module (pandas, numpy, matplotlib, etc.)
-        module = globals().get(module_name)
-        if not module:
-            raise ImportError(f"Module {module_name} not found. Ensure the module is imported.")
+        if "." not in function_name:
+            func_name = function_name
+            module_name = None
+        else:
+            module_name, func_name = function_name.split(".")[0], function_name.split(".")[1]
+            # Import the appropriate module (pandas, numpy, matplotlib, etc.)
+            module = globals().get(module_name)
+            if not module:
+                raise ImportError(f"Module {module_name} not found. Ensure the module is imported.")
 
         # Resolve parameters (handle references like "RESULTX['column_name']")
         resolved_params = {}
@@ -361,8 +365,12 @@ def execute_agent_instructions(instructions, plot_save_path):
             else:
                 resolved_params[param_name] = param_value
 
-        # Call the function dynamically
-        func = getattr(module, func_name)
+        if module_name is None:
+            # Call the function directly
+            func = globals().get(func_name)
+        else:
+            # Call the function dynamically
+            func = getattr(module, func_name)
 
         if function_name == "plt.show":
             # Skip plt.show() and save the plot instead
@@ -370,14 +378,29 @@ def execute_agent_instructions(instructions, plot_save_path):
             time.sleep(1)
             print(f"Plot saved as {plot_save_path}")
             plt.close()  # Close the plot to avoid overlapping
+            
+            # Get the width of the saved plot
+            with Image.open(plot_save_path) as img:
+                plot_width = img.width
+            
             return f"""
             <img src='{os.path.relpath(plot_save_path, "page")}'>
             <br>
-            <a href="{os.path.relpath(plot_save_path, "page")}" download="{os.path.relpath(plot_save_path, "page")}">
-                <button class='download_button'>
+            <div class='button_container' style='width: {plot_width}px;'>
+                <a href="{os.path.relpath(plot_save_path, "page")}" download="{os.path.relpath(plot_save_path, "page")}">
+                    <button class='download_button'>
                     <i class="fa-solid fa-download"></i>
-                </button>
-            </a>
+                    </button>
+                </a>
+                <div class='thumbs_spacer'>
+                    <button class='thumbs_up_button' onclick="thumbsUp(this)">
+                        <i class="fa-solid fa-thumbs-up"></i>
+                    </button>
+                    <button class='thumbs_down_button' onclick="thumbsDown(this)">
+                        <i class="fa-solid fa-thumbs-down"></i>
+                    </button>
+                </div>
+            </div>
             """, True
         else:
             result = func(**resolved_params)

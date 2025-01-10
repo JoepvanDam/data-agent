@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <h1>Data Agent chat with files: {{ file_paths | map('basename') | join(', ') }}</h1>
+    <h1>Data Agent Chat using files: {{ file_paths | map('basename') | join(', ') }}</h1>
 
     <div id="chatbox">
         <p class='userMessage'> {{ message }} &#11164;</p>
@@ -78,6 +78,22 @@
             question_message = document.getElementById('chatInput').value;
             socket.emit("process", { "file_paths": filePaths, "message": question_message, "conversation_history" : conversation_history, "num_images": num_images });
             document.getElementById('chatInput').value = "";
+        }
+
+        // Thumbs up -> if user is happy, save the question and answer so it can be re-used
+        function thumbsUp(thisElement) {
+            thisElement.style.color = "green";
+
+            // Make sure thumbs down is not selected
+            thisElement.nextElementSibling.style.color = "white";
+        }
+
+        // Thumbs down -> does basically nothing, just for user to feel like they are doing something
+        function thumbsDown(thisElement) {
+            thisElement.style.color = "red";
+
+            // Make sure thumbs up is not selected
+            thisElement.previousElementSibling.style.color = "white";
         }
     </script>
 </body>
