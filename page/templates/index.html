@@ -22,7 +22,27 @@
             <i class="fa-solid fa-paper-plane"></i>
         </button>
     </form>
+    <p id='fileFeedback'>No files selected</p>
 
+    <script>
+        // Select the input element
+        const fileInput = document.getElementById('fileInput');
+
+        // Add an event listener for file selection
+        fileInput.addEventListener('change', function () {
+            // Get the selected files
+            const files = fileInput.files;
+            if (files.length > 0) {
+                // Create an array of file names
+                const fileNames = Array.from(files).map(file => file.name);
+                // Display the file names
+                document.getElementById('fileFeedback').textContent = `Selected files: ${fileNames.join(', ')}`;
+            } else {
+                // If no file is selected, clear the text
+                document.getElementById('fileFeedback').textContent = 'No files selected';
+            }
+        });
+    </script>
 </body>
 
 </html>
