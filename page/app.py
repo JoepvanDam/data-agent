@@ -218,7 +218,7 @@ def process(data):
                     num_images += 1
                     break
                 else:
-                    format_prompt = f"Following is a dictionary with the results of all given functions in order, please use this to give a FORMAT response in the earlier JSON format: {results}"
+                    format_prompt = f"Following is a dictionary with the results of all given functions in order. If you intended to show a plot, this message means you forgot to use plt.show - so you should try again. If you did not, please use the dictionary below to give a FORMAT response in the earlier JSON format: {results}"
                     print(format_prompt)
                     conversation_history.append({"role": "user", "content": format_prompt})
                     continue
